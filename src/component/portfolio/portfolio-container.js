@@ -5,7 +5,6 @@ import PortfolioItem from "./portfolio-item";
 
 
 const PortfolioContainer = props => {
-    const [pageTitle, setPageTitle] = useState('');
     const [data, setData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -16,12 +15,13 @@ const PortfolioContainer = props => {
             setData(response.data.portfolio_items);
         })
         .catch(error => {
-
+            console.log(error);
         });
+        setIsLoading(false);
     }
 
     useEffect(() => {
-
+        getPortfolioItems();
     }, [])
 
     const handleFilter = (filter) => {
@@ -34,7 +34,7 @@ const PortfolioContainer = props => {
     const portfolioItems = () => {
 
         return data.map(item => {
-            return <PortfolioItem title={item.name} slug={item.id} url={item.url} />;
+            return <PortfolioItem key={item.id} title={item.name} slug={item.id} url={item.url} />;
         })
     }
 
@@ -44,13 +44,13 @@ const PortfolioContainer = props => {
 
     return (
         <>
-            <h2>{pageTitle}</h2>
+            <h2>Homer's Portfolio</h2>
 
             <button onClick={() => handleFilter('eCommerce')}>eCommerce</button>
             <button onClick={() => handleFilter('Scheduling')}>Scheduling</button>
             <button onClick={() => handleFilter('Enterprise')}>Enterprise</button>
             
-            {portfolioItems()}
+            {portfolioItems}
         </>
     );
 };
