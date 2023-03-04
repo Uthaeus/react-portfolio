@@ -4,7 +4,7 @@ const PortfolioItem = props => {
 
     return (
         <div>
-            <h3>Portfolio Item</h3>
+            <h3>{props.title}</h3>
         </div>
     );
 };

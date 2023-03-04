@@ -1,19 +1,21 @@
+import { useState } from "react";
 
 import PortfolioItem from "./portfolio-item";
 
 const PortfolioContainer = props => {
+    const [pageTitle, setPageTitle] = useState('');
+    const [data, setData] = useState([]);
 
     const portfolioItems = () => {
-        const data = ['quip', 'event', 'safe'];
 
         return data.map(item => {
-            return <PortfolioItem />;
+            return <PortfolioItem title={item.title} />;
         })
     }
 
     return (
         <>
-            <h2>Portfolio items go here...</h2>
+            <h2>{pageTitle}</h2>
             
             {portfolioItems()}
         </>
