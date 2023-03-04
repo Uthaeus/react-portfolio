@@ -1,16 +1,24 @@
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import './App.css';
-import PortfolioContainer from './component/portfolio/portfolio-container';
-import NavigationComponent from './component/navigation/navigation-container';
+import HomePage from './pages/home';
+import RootLayout from './pages/root-layout';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout />,
+    children: [
+      {
+        index: true,
+        element: <HomePage />
+      }
+    ]
+  }
+])
 
 function App() {
-  return (
-    <div>
-      <NavigationComponent />
-      <h1>Homer Simpson's Portfolio</h1>
-      <PortfolioContainer />
-    </div>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
