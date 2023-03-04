@@ -5,6 +5,7 @@ import AboutPage from './pages/about';
 import BlogPage from './pages/blog';
 import ContactPage from './pages/contact';
 import HomePage from './pages/home';
+import PortfolioDetail from './component/portfolio/portfolio-detail';
 import RootLayout from './pages/root-layout';
 
 const router = createBrowserRouter([
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: 'blog',
         element: <BlogPage />
+      },
+      {
+        path: '/portfolio/:slug',
+        element: <PortfolioDetail />
       }
     ]
   }
