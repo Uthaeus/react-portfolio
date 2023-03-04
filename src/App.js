@@ -9,6 +9,8 @@ import PortfolioDetail from './component/portfolio/portfolio-detail';
 import RootLayout from './pages/root-layout';
 import NoMatch from './pages/no-match';
 
+// https://romanlavery.devcamp.space/portfolio/portfolio_items
+
 const router = createBrowserRouter([
   {
     path: '/',
