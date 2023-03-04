@@ -7,11 +7,13 @@ import ContactPage from './pages/contact';
 import HomePage from './pages/home';
 import PortfolioDetail from './component/portfolio/portfolio-detail';
 import RootLayout from './pages/root-layout';
+import NoMatch from './pages/no-match';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
+    errorElement: <NoMatch />,
     children: [
       {
         index: true,
