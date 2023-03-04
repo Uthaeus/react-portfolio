@@ -5,6 +5,7 @@ import PortfolioItem from "./portfolio-item";
 const PortfolioContainer = props => {
     const [pageTitle, setPageTitle] = useState('');
     const [data, setData] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleFilter = (filter) => {
         const updatedData = data.filter(item => {
@@ -17,6 +18,10 @@ const PortfolioContainer = props => {
         return data.map(item => {
             return <PortfolioItem title={item.title} />;
         })
+    }
+
+    if (isLoading) {
+        return <div>Loading....</div>
     }
 
     return (
