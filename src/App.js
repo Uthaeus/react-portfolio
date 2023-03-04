@@ -1,6 +1,6 @@
 
 import './App.css';
-import PortfolioContainer from './component/portfolio-container';
+import PortfolioContainer from './component/portfolio/portfolio-container';
 
 function App() {
   return (
