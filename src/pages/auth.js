@@ -1,9 +1,20 @@
-
+import { useNavigate } from 'react-router-dom';
 
 import loginImage from '../../public/assets/images/auth/login.jpg';
 import Login from '../component/auth/login';
 
-const Auth = () => {
+const Auth = (props) => {
+    const navigate = useNavigate();
+
+    const handleSuccessfulAuth = () => {
+        props.handleSuccessfulLogin();
+        navigate('/');
+    }
+
+    const handleUnsuccessfulAuth = () => {
+        props.handleUnsuccessfulLogin();
+    }
+
     return (
         <div className="auth-page-wrapper">
             <div 
@@ -14,7 +25,7 @@ const Auth = () => {
             />
                 
             <div className="right-column">
-                <Login />
+                <Login handleSuccessfulAuth={handleSuccessfulAuth} handleUnsuccessfulAuth={handleUnsuccessfulAuth} />
             </div>
         </div>
     );
