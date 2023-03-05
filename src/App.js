@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import './App.css';
@@ -12,41 +13,55 @@ import Auth from './pages/auth';
 
 // https://romanlavery.devcamp.space/portfolio/portfolio_items
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <RootLayout />,
-    errorElement: <NoMatch />,
-    children: [
-      {
-        index: true,
-        element: <HomePage />
-      },
-      {
-        path: 'about-me',
-        element: <AboutPage />
-      },
-      {
-        path: 'contact',
-        element: <ContactPage />
-      },
-      {
-        path: 'blog',
-        element: <BlogPage />
-      },
-      {
-        path: '/portfolio/:slug',
-        element: <PortfolioDetail />
-      },
-      {
-        path: '/auth',
-        element: <Auth />
-      }
-    ]
-  }
-])
+function App(props) {
+  const [isLoggedIn, setIsLoggedIn] = useState('NOT_LOGGED_IN');
 
-function App() {
+  const handleSuccessfulLogin = () => {
+    setIsLoggedIn('LOGGED_IN');
+  }
+
+  const handleUnsuccessfulLogin = () => {
+    setIsLoggedIn('NOT_LOGGED_IN');
+  }
+
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      element: <RootLayout />,
+      errorElement: <NoMatch />,
+      children: [
+        {
+          index: true,
+          element: <HomePage />
+        },
+        {
+          path: 'about-me',
+          element: <AboutPage />
+        },
+        {
+          path: 'contact',
+          element: <ContactPage />
+        },
+        {
+          path: 'blog',
+          element: <BlogPage />
+        },
+        {
+          path: '/portfolio/:slug',
+          element: <PortfolioDetail />
+        },
+        {
+          path: '/auth',
+          element: <Auth 
+                    {...props} 
+                    handleSuccessfulLogin={handleSuccessfulLogin} 
+                    handleUnsuccessfulLogin={handleUnsuccessfulLogin} 
+                  />
+        }
+      ]
+    }
+  ]);
+
   return <RouterProvider router={router} />;
 }
 
