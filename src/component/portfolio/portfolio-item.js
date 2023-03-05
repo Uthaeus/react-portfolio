@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 const PortfolioItem = ({ id, description, thumb_image_url, logo_url }) => {
     //const { id, description, thumb_image_url, logo_url } = props.item;

@@ -8,6 +8,7 @@ import HomePage from './pages/home';
 import PortfolioDetail from './component/portfolio/portfolio-detail';
 import RootLayout from './pages/root-layout';
 import NoMatch from './pages/no-match';
+import Auth from './pages/auth';
 
 // https://romanlavery.devcamp.space/portfolio/portfolio_items
 
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: '/portfolio/:slug',
         element: <PortfolioDetail />
+      },
+      {
+        path: '/auth',
+        element: <Auth />
       }
     ]
   }
