@@ -1,6 +1,7 @@
 
 
 import loginImage from '../../public/assets/images/auth/login.jpg';
+import Login from '../component/auth/login';
 
 const Auth = () => {
     return (
@@ -13,7 +14,7 @@ const Auth = () => {
             />
                 
             <div className="right-column">
-                <h2>login...</h2>
+                <Login />
             </div>
         </div>
     );
