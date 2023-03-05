@@ -1,20 +1,38 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const PortfolioItem = props => {
-    const { id, description, thumb_image_url, logo } = props.item;
+const PortfolioItem = ({ id, description, thumb_image_url, logo_url }) => {
+    //const { id, description, thumb_image_url, logo_url } = props.item;
+    const [portfolioItemClass, setPortfolioItemClass] = useState('');
+
+    const handleMouseEnter = () => {
+        setPortfolioItemClass('image-blur');
+    }
+
+    const handleMouseLeave = () => {
+        setPortfolioItemClass('')
+    }
 
     return (
-        <div className="portfolio-item-wrapper">
+        <div className="portfolio-item-wrapper"
+            onMouseEnter={() => handleMouseEnter()}
+            onMouseLeave={() => handleMouseLeave()}
+        >
             <div
-                className="portfolio-img-background"
+                className={"portfolio-img-background " + portfolioItemClass}
                 style={{
                     backgroundImage: `url(${thumb_image_url})`
                 }}     
             />
 
-            <img src={logo} alt='' />
-            <div>{description}</div>
-            <Link to={`/portfolio/${id}`}>Link</Link>
+            <div className="img-text-wrapper">
+                <div className="logo-wrapper">
+                    <img src={logo_url} alt='' />
+                </div>
+                <div className="subtitle">
+                    {description}
+                </div>
+            </div>
         </div>
     );
 };
