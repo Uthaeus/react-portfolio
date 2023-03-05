@@ -40,17 +40,13 @@ const PortfolioContainer = props => {
     }
 
     return (
-        <>
-            <h2>Homer's Portfolio</h2>
-
-            <button onClick={() => handleFilter('eCommerce')}>eCommerce</button>
-            <button onClick={() => handleFilter('Scheduling')}>Scheduling</button>
-            <button onClick={() => handleFilter('Enterprise')}>Enterprise</button>
-            
-            <div className="portfolio-items-wrapper">
-                {portfolioItems}
-            </div>
-        </>
+        <div className="portfolio-items-wrapper">
+            <button className="btn" onClick={() => handleFilter('eCommerce')}>eCommerce</button>
+            <button className="btn" onClick={() => handleFilter('Scheduling')}>Scheduling</button>
+            <button className="btn" onClick={() => handleFilter('Enterprise')}>Enterprise</button>
+        
+            {portfolioItems}
+        </div>
     );
 };
 
