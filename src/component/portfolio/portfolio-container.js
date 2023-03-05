@@ -34,7 +34,7 @@ const PortfolioContainer = props => {
     const portfolioItems = () => {
 
         return data.map(item => {
-            return <PortfolioItem key={item.id} title={item.name} slug={item.id} url={item.url} />;
+            return <PortfolioItem key={item.id} item={item} />;
         })
     }
 

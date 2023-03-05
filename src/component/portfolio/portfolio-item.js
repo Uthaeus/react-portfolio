@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 
 const PortfolioItem = props => {
+    const { id, description, thumb_image_url, logo } = props.item;
 
     return (
         <div>
-            <h3>{props.title}</h3>
-
-            <Link to={`/portfolio/${props.slug}`}>Link</Link>
+            <img src={thumb_image_url} alt='' />
+            <img src={logo} alt='' />
+            <div>{description}</div>
+            <Link to={`/portfolio/${id}`}>Link</Link>
         </div>
     );
 };
