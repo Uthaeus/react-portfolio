@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import loginImage from '../../public/assets/images/auth/login.jpg';
+import loginImage from '../assets/images/auth/login.jpg';
 import Login from '../component/auth/login';
 
 const Auth = (props) => {

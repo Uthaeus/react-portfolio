@@ -20,7 +20,7 @@ const PortfolioItem = ({ id, description, thumb_image_url, logo_url }) => {
             <div
                 className={"portfolio-img-background " + portfolioItemClass}
                 style={{
-                    backgroundImage: `url(${thumb_image_url})`
+                    backgroundImage: `url(${thumb_image_url})` || null
                 }}     
             />
 

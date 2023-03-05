@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 
-import './App.css';
 import AboutPage from './pages/about';
 import BlogPage from './pages/blog';
 import ContactPage from './pages/contact';
@@ -42,22 +41,22 @@ function App(props) {
   //   })
   // }
 
-  useEffect(() => {
-    return axios.get('https://api.devcamp.space/logged_in', { withCredentials: true }
-    ).then(response => {
-      const loggedIn = response.data.logged_in;
+  // useEffect(() => {
+  //   return axios.get('https://api.devcamp.space/logged_in', { withCredentials: true }
+  //   ).then(response => {
+  //     const loggedIn = response.data.logged_in;
       
-      if (loggedIn && isLoggedIn === 'LOGGED_IN') {
-        return loggedIn;
-      } else if (loggedIn && isLoggedIn === 'NOT_LOGGED_IN') {
-        setIsLoggedIn('LOGGED_IN');
-      } else if (!loggedIn && isLoggedIn === 'LOGGED_IN') {
-        setIsLoggedIn('NOT_LOGGED_IN');
-      }
-    }).catch(error => {
-      console.log(error);
-    })
-  }, [isLoggedIn])
+  //     if (loggedIn && isLoggedIn === 'LOGGED_IN') {
+  //       return loggedIn;
+  //     } else if (loggedIn && isLoggedIn === 'NOT_LOGGED_IN') {
+  //       setIsLoggedIn('LOGGED_IN');
+  //     } else if (!loggedIn && isLoggedIn === 'LOGGED_IN') {
+  //       setIsLoggedIn('NOT_LOGGED_IN');
+  //     }
+  //   }).catch(error => {
+  //     console.log(error);
+  //   })
+  // }, [isLoggedIn])
 
   const router = createBrowserRouter([
     {
