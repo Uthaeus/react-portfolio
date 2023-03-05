@@ -31,12 +31,9 @@ const PortfolioContainer = props => {
         return updatedData;
     }
 
-    const portfolioItems = () => {
-
-        return data.map(item => {
-            return <PortfolioItem key={item.id} item={item} />;
-        })
-    }
+    const portfolioItems = data.map(item => {
+        return <PortfolioItem key={item.id} item={item} />;
+    });
 
     if (isLoading) {
         return <div>Loading....</div>
@@ -50,7 +47,9 @@ const PortfolioContainer = props => {
             <button onClick={() => handleFilter('Scheduling')}>Scheduling</button>
             <button onClick={() => handleFilter('Enterprise')}>Enterprise</button>
             
-            {portfolioItems}
+            <div className="portfolio-items-wrapper">
+                {portfolioItems}
+            </div>
         </>
     );
 };

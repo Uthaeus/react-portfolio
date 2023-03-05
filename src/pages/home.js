@@ -6,7 +6,6 @@ const HomePage = () => {
 
     return (
         <div>
-            <h1>Homer Simpson's Portfolio</h1>
             <PortfolioContainer />
         </div>
     );

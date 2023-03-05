@@ -4,12 +4,12 @@ import NavigationComponent from "../component/navigation/navigation-container";
 
 const RootLayout = () => {
     return (
-        <>
+        <div className="container">
             <NavigationComponent />
             <main>
                 <Outlet />
             </main>
-        </>
+        </div>
     );
 };
 
