@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import axios from 'axios';
 
@@ -22,41 +22,29 @@ function App(props) {
 
   const handleUnsuccessfulLogin = () => {
     setIsLoggedIn('NOT_LOGGED_IN');
+    console.log('unsuccessful login', isLoggedIn)
   }
 
-  // const checkLoginStatus = () => {
-  //   return axios.get('https://api.devcamp.space/logged_in', { withCredentials: true }
-  //   ).then(response => {
-  //     const loggedIn = response.data.logged_in;
-      
-  //     if (loggedIn && isLoggedIn === 'LOGGED_IN') {
-  //       return loggedIn;
-  //     } else if (loggedIn && isLoggedIn === 'NOT_LOGGED_IN') {
-  //       setIsLoggedIn('LOGGED_IN');
-  //     } else if (!loggedIn && isLoggedIn === 'LOGGED_IN') {
-  //       setIsLoggedIn('NOT_LOGGED_IN');
-  //     }
-  //   }).catch(error => {
-  //     console.log(error);
-  //   })
-  // }
+  const checkLoginStatus = useCallback(() => {
+    return axios.get('https://api.devcamp.space/logged_in', { withCredentials: true }
+    ).then(response => {
+      const loggedIn = response.data.logged_in;
+      console.log('checklogin', loggedIn, isLoggedIn);
+      if (loggedIn && isLoggedIn === 'LOGGED_IN') {
+        return loggedIn;
+      } else if (loggedIn && isLoggedIn === 'NOT_LOGGED_IN') {
+        setIsLoggedIn('LOGGED_IN');
+      } else if (!loggedIn && isLoggedIn === 'LOGGED_IN') {
+        setIsLoggedIn('NOT_LOGGED_IN');
+      }
+    }).catch(error => {
+      console.log(error);
+    })
+  }, [isLoggedIn]);
 
-  // useEffect(() => {
-  //   return axios.get('https://api.devcamp.space/logged_in', { withCredentials: true }
-  //   ).then(response => {
-  //     const loggedIn = response.data.logged_in;
-      
-  //     if (loggedIn && isLoggedIn === 'LOGGED_IN') {
-  //       return loggedIn;
-  //     } else if (loggedIn && isLoggedIn === 'NOT_LOGGED_IN') {
-  //       setIsLoggedIn('LOGGED_IN');
-  //     } else if (!loggedIn && isLoggedIn === 'LOGGED_IN') {
-  //       setIsLoggedIn('NOT_LOGGED_IN');
-  //     }
-  //   }).catch(error => {
-  //     console.log(error);
-  //   })
-  // }, [isLoggedIn])
+  useEffect(() => {
+    checkLoginStatus();
+  }, [checkLoginStatus])
 
   const router = createBrowserRouter([
     {
