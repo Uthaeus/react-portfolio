@@ -25,6 +25,8 @@ class PortfolioForm extends Component {
     this.componentConfig = this.componentConfig.bind(this);
     this.djsConfig = this.djsConfig.bind(this);
     this.handleThumbDrop = this.handleThumbDrop.bind(this);
+    this.handleBannerDrop = this.handleBannerDrop.bind(this);
+    this.handleLogoDrop = this.handleLogoDrop.bind(this);
 
     this.thumbRef = React.createRef();
     this.bannerRef = React.createRef();
@@ -34,6 +36,18 @@ class PortfolioForm extends Component {
   handleThumbDrop() {
     return {
         addedfile: file => this.setState({ thumb_image: file })
+    }
+  }
+
+  handleBannerDrop() {
+    return {
+        addedfile: file => this.setState({ banner_image: file })
+    }
+  }
+
+  handleLogoDrop() {
+    return {
+        addedfile: file => this.setState({ logo: file })
     }
   }
 
@@ -63,6 +77,12 @@ class PortfolioForm extends Component {
     
     if (this.state.thumb_image) {
         formData.append("portfolio_item[thumb_image]", this.state.thumb_image);
+    }
+    if (this.state.banner_image) {
+        formData.append("portfolio_item[thumb_image]", this.state.banner_image);
+    }
+    if (this.state.logo) {
+        formData.append("portfolio_item[thumb_image]", this.state.logo);
     }
 
     return formData;
