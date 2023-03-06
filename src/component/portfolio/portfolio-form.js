@@ -16,15 +16,22 @@ class PortfolioForm extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    
+    this.setState({
+        [event.target.name]: event.target.value
+    });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
   }
 
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSubmit}>
         <div>
           <input
             type="text"
