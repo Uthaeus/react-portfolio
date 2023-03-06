@@ -8,7 +8,7 @@ class PortfolioForm extends Component {
     this.state = {
       name: "",
       description: "",
-      category: "",
+      category: "any",
       position: "",
       url: "",
       thumg_image: "",
@@ -45,7 +45,9 @@ class PortfolioForm extends Component {
         this.buildForm(),
         { withCredentials: true }
       )
-      .then((response) => {})
+      .then((response) => {
+        this.props.handleSuccessfulFormSubmission(response.data.portfolio_item);
+      })
       .catch((error) => {
         console.log("portfolio form handleSubmit", error);
       });
@@ -87,7 +89,8 @@ class PortfolioForm extends Component {
             value={this.state.category}
             onChange={this.handleChange}
           >
-            <option value="">Category</option>
+            <option value="any">Category</option>
+            <option value="any">Any/All</option>
             <option value="eCommerce">eCommerce</option>
             <option value="Scheduling">Scheduling</option>
             <option value="Enterprise">Enterprise</option>

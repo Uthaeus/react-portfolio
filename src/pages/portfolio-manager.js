@@ -8,9 +8,9 @@ const PortfolioManager = () => {
   const [portfolioItems, setPortfolioItems] = useState([]);
 
   const handleSuccessfulFormSubmission = (portfolioItem) => {
-    //TODO
-    // update portfolioItem state
-    // add portfolioItem to list
+    let updatedPortfolioItems = [portfolioItem].concat(portfolioItems);
+
+    setPortfolioItems(updatedPortfolioItems);
   };
 
   const handleFormSubmissionError = (error) => {
@@ -19,7 +19,7 @@ const PortfolioManager = () => {
 
   const getPortfolioItems = () => {
     axios
-      .get("https://romanlavery.devcamp.space/portfolio/portfolio_items", {
+      .get("https://romanlavery.devcamp.space/portfolio/portfolio_items?order_by=created_at&direction=desc", {
         withCredentials: true,
       })
       .then((response) => {
