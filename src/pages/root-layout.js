@@ -2,10 +2,13 @@ import { Outlet } from "react-router-dom";
 
 import NavigationComponent from "../component/navigation/navigation-container";
 
-const RootLayout = () => {
+const RootLayout = (props) => {
     return (
         <div className="container">
-            <NavigationComponent />
+            <NavigationComponent 
+                loggedInStatus={props.loggedInStatus} 
+                handleSuccessfulLogout={props.handleSuccessfulLogout}
+            />
             <main>
                 <Outlet />
             </main>

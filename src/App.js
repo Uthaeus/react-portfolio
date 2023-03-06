@@ -25,11 +25,15 @@ function App(props) {
     console.log('unsuccessful login', isLoggedIn)
   }
 
+  const handleSuccessfulLogout = () => {
+    setIsLoggedIn('NOT_LOGGED_IN');
+  }
+
   const checkLoginStatus = useCallback(() => {
     return axios.get('https://api.devcamp.space/logged_in', { withCredentials: true }
     ).then(response => {
       const loggedIn = response.data.logged_in;
-      console.log('checklogin', loggedIn, isLoggedIn);
+      //console.log('checklogin', loggedIn, isLoggedIn);
       if (loggedIn && isLoggedIn === 'LOGGED_IN') {
         return loggedIn;
       } else if (loggedIn && isLoggedIn === 'NOT_LOGGED_IN') {
@@ -46,10 +50,15 @@ function App(props) {
     checkLoginStatus();
   }, [checkLoginStatus])
 
+  //element: isLoggedIn ? <DashboardLayout /> : <Navigate to="/login" />
+
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <RootLayout />,
+      element: <RootLayout 
+                  loggedInStatus={isLoggedIn} 
+                  handleSuccessfulLogout={handleSuccessfulLogout}
+                />,
       errorElement: <NoMatch />,
       children: [
         {
