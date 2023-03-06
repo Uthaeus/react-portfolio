@@ -1,96 +1,106 @@
-import { useState, useEffect, useCallback } from 'react';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import axios from 'axios';
+import { useState, useEffect, useCallback } from "react";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import axios from "axios";
 
-import AboutPage from './pages/about';
-import BlogPage from './pages/blog';
-import ContactPage from './pages/contact';
-import HomePage from './pages/home';
-import PortfolioDetail from './component/portfolio/portfolio-detail';
-import RootLayout from './pages/root-layout';
-import NoMatch from './pages/no-match';
-import Auth from './pages/auth';
+import AboutPage from "./pages/about";
+import BlogPage from "./pages/blog";
+import ContactPage from "./pages/contact";
+import HomePage from "./pages/home";
+import PortfolioDetail from "./component/portfolio/portfolio-detail";
+import RootLayout from "./pages/root-layout";
+import NoMatch from "./pages/no-match";
+import Auth from "./pages/auth";
+import PortfolioManager from "./pages/portfolio-manager";
 
 // https://romanlavery.devcamp.space/portfolio/portfolio_items
 
 function App(props) {
-  const [isLoggedIn, setIsLoggedIn] = useState('NOT_LOGGED_IN');
+  const [isLoggedIn, setIsLoggedIn] = useState("NOT_LOGGED_IN");
 
   const handleSuccessfulLogin = () => {
-    setIsLoggedIn('LOGGED_IN');
-  }
+    setIsLoggedIn("LOGGED_IN");
+  };
 
   const handleUnsuccessfulLogin = () => {
-    setIsLoggedIn('NOT_LOGGED_IN');
-    console.log('unsuccessful login', isLoggedIn)
-  }
+    setIsLoggedIn("NOT_LOGGED_IN");
+  };
 
   const handleSuccessfulLogout = () => {
-    setIsLoggedIn('NOT_LOGGED_IN');
-  }
+    setIsLoggedIn("NOT_LOGGED_IN");
+  };
 
   const checkLoginStatus = useCallback(() => {
-    return axios.get('https://api.devcamp.space/logged_in', { withCredentials: true }
-    ).then(response => {
-      const loggedIn = response.data.logged_in;
-      //console.log('checklogin', loggedIn, isLoggedIn);
-      if (loggedIn && isLoggedIn === 'LOGGED_IN') {
-        return loggedIn;
-      } else if (loggedIn && isLoggedIn === 'NOT_LOGGED_IN') {
-        setIsLoggedIn('LOGGED_IN');
-      } else if (!loggedIn && isLoggedIn === 'LOGGED_IN') {
-        setIsLoggedIn('NOT_LOGGED_IN');
-      }
-    }).catch(error => {
-      console.log(error);
-    })
+    return axios
+      .get("https://api.devcamp.space/logged_in", { withCredentials: true })
+      .then((response) => {
+        const loggedIn = response.data.logged_in;
+        //console.log('checklogin', loggedIn, isLoggedIn);
+        if (loggedIn && isLoggedIn === "LOGGED_IN") {
+          return loggedIn;
+        } else if (loggedIn && isLoggedIn === "NOT_LOGGED_IN") {
+          setIsLoggedIn("LOGGED_IN");
+        } else if (!loggedIn && isLoggedIn === "LOGGED_IN") {
+          setIsLoggedIn("NOT_LOGGED_IN");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, [isLoggedIn]);
 
   useEffect(() => {
     checkLoginStatus();
-  }, [checkLoginStatus])
+  }, [checkLoginStatus]);
 
   //element: isLoggedIn ? <DashboardLayout /> : <Navigate to="/login" />
 
   const router = createBrowserRouter([
     {
-      path: '/',
-      element: <RootLayout 
-                  loggedInStatus={isLoggedIn} 
-                  handleSuccessfulLogout={handleSuccessfulLogout}
-                />,
+      path: "/",
+      element: (
+        <RootLayout
+          loggedInStatus={isLoggedIn}
+          handleSuccessfulLogout={handleSuccessfulLogout}
+        />
+      ),
       errorElement: <NoMatch />,
       children: [
         {
           index: true,
-          element: <HomePage />
+          element: <HomePage />,
         },
         {
-          path: 'about-me',
-          element: <AboutPage />
+          path: "about-me",
+          element: <AboutPage />,
         },
         {
-          path: 'contact',
-          element: <ContactPage />
+          path: "contact",
+          element: <ContactPage />,
         },
         {
-          path: 'blog',
-          element: <BlogPage />
+          path: "blog",
+          element: <BlogPage />,
         },
         {
-          path: '/portfolio/:slug',
-          element: <PortfolioDetail />
+          path: "/portfolio/:slug",
+          element: <PortfolioDetail />,
         },
         {
-          path: '/auth',
-          element: <Auth 
-                    {...props} 
-                    handleSuccessfulLogin={handleSuccessfulLogin} 
-                    handleUnsuccessfulLogin={handleUnsuccessfulLogin} 
-                  />
-        }
-      ]
-    }
+          path: "/portfolio-manager",
+          element: isLoggedIn ? <PortfolioManager /> : null,
+        },
+        {
+          path: "/auth",
+          element: (
+            <Auth
+              {...props}
+              handleSuccessfulLogin={handleSuccessfulLogin}
+              handleUnsuccessfulLogin={handleUnsuccessfulLogin}
+            />
+          ),
+        },
+      ],
+    },
   ]);
 
   return <RouterProvider router={router} />;
