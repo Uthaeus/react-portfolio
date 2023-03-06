@@ -12,8 +12,7 @@ const PortfolioContainer = props => {
         setIsLoading(true);
         axios.get('https://romanlavery.devcamp.space/portfolio/portfolio_items')
         .then(response => {
-            setData(response.data.portfolio_items);
-            console.log('getPortfolioItems', response);
+            setData([...response.data.portfolio_items]);
         })
         .catch(error => {
             console.log(error);
