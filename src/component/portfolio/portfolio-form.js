@@ -127,7 +127,7 @@ class PortfolioForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="portfolio-form-wrapper" onSubmit={this.handleSubmit}>
         <div>
           <input
             type="text"
