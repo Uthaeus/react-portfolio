@@ -1,7 +1,23 @@
 
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 
 const NavigationComponent = props => {
+    const navigate = useNavigate();
+
+    const handleSignOut = () => {
+        axios.delete('https://api.devcamp.space/logout', { withCredentials: true })
+        .then(response => {
+            if (response.status === 200) {
+                props.handleSuccessfulLogout();
+                navigate('/');
+            }
+            return response.data;
+        }).catch(error => {
+            console.log('error signing out', error);
+        })
+    }
+
     return (
         <div className="nav-wrapper">
             <div className="left-side">
@@ -37,10 +53,11 @@ const NavigationComponent = props => {
 
             <div className="right-side">
                 Homer Simpson
+                {props.loggedInStatus === 'LOGGED_IN' ? <Link onClick={handleSignOut}>Sign Out</Link> : null}
             </div>
         </div>
     );
 };
 
-
+// withRouter(NavigationComponent)
 export default NavigationComponent;
