@@ -15,7 +15,7 @@ const PortfolioContainer = props => {
             setData([...response.data.portfolio_items]);
         })
         .catch(error => {
-            console.log(error);
+            console.log('portfolio container getPortfolioItems', error);
         });
         setIsLoading(false);
     }

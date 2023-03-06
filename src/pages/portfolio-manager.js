@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+import PortfolioSidebarList from "../component/portfolio/portfolio-sidebar-list";
+
 const PortfolioManager = () => {
   const [portfolioItems, setPortfolioItems] = useState([]);
 
@@ -28,7 +30,7 @@ const PortfolioManager = () => {
       </div>
 
       <div className="right-column">
-        <h1>sidebar</h1>
+        <PortfolioSidebarList data={portfolioItems} />
       </div>
     </div>
   );
