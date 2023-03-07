@@ -7,6 +7,10 @@ import PortfolioForm from "../component/portfolio/portfolio-form";
 const PortfolioManager = () => {
   const [portfolioItems, setPortfolioItems] = useState([]);
 
+  const handleDeleteClick = portfolioItem => {
+    console.log('handleDeleteClick', portfolioItem);
+  }
+
   const handleSuccessfulFormSubmission = (portfolioItem) => {
     let updatedPortfolioItems = [portfolioItem].concat(portfolioItems);
 
@@ -44,7 +48,7 @@ const PortfolioManager = () => {
       </div>
 
       <div className="right-column">
-        <PortfolioSidebarList data={portfolioItems} />
+        <PortfolioSidebarList data={portfolioItems} handleDeleteClick={handleDeleteClick} />
       </div>
     </div>
   );
