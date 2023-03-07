@@ -159,6 +159,7 @@ class PortfolioForm extends Component {
             name="category"
             value={this.state.category}
             onChange={this.handleChange}
+            className='select-element'
           >
             <option value="any">Category</option>
             <option value="any">Any/All</option>
