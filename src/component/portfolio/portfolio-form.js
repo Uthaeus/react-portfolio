@@ -18,6 +18,9 @@ class PortfolioForm extends Component {
       thumb_image: "",
       banner_image: "",
       logo: "",
+      editMode: false,
+      apiUrl: "https://romanlavery.devcamp.space/portfolio/portfolio_items",
+      apiAction: 'post'
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -46,7 +49,7 @@ class PortfolioForm extends Component {
             banner_image_url,
             logo_url
         } = this.props.portfolioToEdit;
-        
+
         this.props.clearPortolioToEdit();
 
         this.setState({
@@ -55,7 +58,10 @@ class PortfolioForm extends Component {
             description: description || '',
             category: category || 'any',
             position: position || '',
-            url: url || ''
+            url: url || '',
+            editMode: true,
+            apiUrl: `https://romanlavery.devcamp.space/portfolio/portfolio_items/${id}`,
+            apiAction: 'patch'
         });
     }
   }
@@ -123,11 +129,12 @@ class PortfolioForm extends Component {
 
   handleSubmit(event) {
     axios
-      .post(
-        "https://romanlavery.devcamp.space/portfolio/portfolio_items",
-        this.buildForm(),
-        { withCredentials: true }
-      )
+      .post({
+        method: this.state.apiAction,
+        url: this.state.apiUrl,
+        data: this.buildForm(),
+        withCredentials: true
+      })
       .then((response) => {
         this.props.handleSuccessfulFormSubmission(response.data.portfolio_item);
 
