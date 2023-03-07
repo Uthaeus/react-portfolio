@@ -9,6 +9,16 @@ const PortfolioManager = () => {
 
   const handleDeleteClick = portfolioItem => {
     console.log('handleDeleteClick', portfolioItem);
+    axios.delete(`https://api.devcamp.space/portfolio/portfolio_items/${portfolioItem.id}`, { withCredentials: true }
+    ).then(response => {
+        let updatedItems = portfolioItems.filter(item => {
+            return item.id !== portfolioItem.id;
+        })
+        setPortfolioItems(updatedItems);
+        return response.data;
+    }).catch(error => {
+        console.log('handleDeleteClick error', error);
+    })
   }
 
   const handleSuccessfulFormSubmission = (portfolioItem) => {
