@@ -8,6 +8,10 @@ const PortfolioManager = () => {
   const [portfolioItems, setPortfolioItems] = useState([]);
   const [portfolioToEdit, setPortfolioToEdit] = useState({});
 
+  const clearPortfolioToEdit = () => {
+    setPortfolioToEdit({});
+  }
+
   const handleEditClick = (portfolioItem) => {
     setPortfolioToEdit(portfolioItem);
   };
@@ -67,6 +71,8 @@ const PortfolioManager = () => {
         <PortfolioForm
           handleSuccessfulFormSubmission={handleSuccessfulFormSubmission}
           handleFormSubmissionError={handleFormSubmissionError}
+          clearPortfolioToEdit={clearPortfolioToEdit}
+          portfolioToEdit={portfolioToEdit}
         />
       </div>
 
