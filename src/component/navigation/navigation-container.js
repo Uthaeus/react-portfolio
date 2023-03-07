@@ -1,5 +1,6 @@
 import { NavLink, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const NavigationComponent = (props) => {
   const navigate = useNavigate();
@@ -80,7 +81,9 @@ const NavigationComponent = (props) => {
       <div className="right-side">
         Homer Simpson
         {props.loggedInStatus === "LOGGED_IN" && (
-          <Link onClick={handleSignOut}>Sign Out</Link>
+          <Link onClick={handleSignOut}>
+            <FontAwesomeIcon icon='sign-out-alt' />
+          </Link>
         )}
       </div>
     </div>
