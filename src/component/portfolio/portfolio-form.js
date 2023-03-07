@@ -128,7 +128,7 @@ class PortfolioForm extends Component {
   render() {
     return (
       <form className="portfolio-form-wrapper" onSubmit={this.handleSubmit}>
-        <div>
+        <div className="two-column">
           <input
             type="text"
             name="name"
@@ -146,7 +146,7 @@ class PortfolioForm extends Component {
           />
         </div>
 
-        <div>
+        <div className="two-column">
           <input
             type="text"
             name="position"
@@ -169,7 +169,7 @@ class PortfolioForm extends Component {
           </select>
         </div>
 
-        <div>
+        <div className="one-column">
           <textarea
             name="description"
             placeholder="Description"
@@ -185,6 +185,7 @@ class PortfolioForm extends Component {
                 eventHandlers={this.handleThumbDrop()}
                 ref={this.thumbRef}
             >
+                <div className="dz-message">Thumbnail</div>
             </DropzoneComponent>
             <DropzoneComponent 
                 config={this.componentConfig()}
@@ -192,6 +193,7 @@ class PortfolioForm extends Component {
                 eventHandlers={this.handleBannerDrop()}
                 ref={this.bannerRef}
             >
+                <div className="dz-message">Banner</div>
             </DropzoneComponent>
             <DropzoneComponent 
                 config={this.componentConfig()}
@@ -199,11 +201,12 @@ class PortfolioForm extends Component {
                 eventHandlers={this.handleLogoDrop()}
                 ref={this.logoRef}
             >
+                <div className="dz-message">Logo</div>
             </DropzoneComponent>
         </div>
 
         <div>
-          <button type="submit">Save</button>
+          <button className="btn" type="submit">Save</button>
         </div>
       </form>
     );
