@@ -6,20 +6,30 @@ import PortfolioForm from "../component/portfolio/portfolio-form";
 
 const PortfolioManager = () => {
   const [portfolioItems, setPortfolioItems] = useState([]);
+  const [portfolioToEdit, setPortfolioToEdit] = useState({});
 
-  const handleDeleteClick = portfolioItem => {
-    console.log('handleDeleteClick', portfolioItem);
-    axios.delete(`https://api.devcamp.space/portfolio/portfolio_items/${portfolioItem.id}`, { withCredentials: true }
-    ).then(response => {
-        let updatedItems = portfolioItems.filter(item => {
-            return item.id !== portfolioItem.id;
-        })
+  const handleEditClick = (portfolioItem) => {
+    setPortfolioToEdit(portfolioItem);
+  };
+
+  const handleDeleteClick = (portfolioItem) => {
+    console.log("handleDeleteClick", portfolioItem);
+    axios
+      .delete(
+        `https://api.devcamp.space/portfolio/portfolio_items/${portfolioItem.id}`,
+        { withCredentials: true }
+      )
+      .then((response) => {
+        let updatedItems = portfolioItems.filter((item) => {
+          return item.id !== portfolioItem.id;
+        });
         setPortfolioItems(updatedItems);
         return response.data;
-    }).catch(error => {
-        console.log('handleDeleteClick error', error);
-    })
-  }
+      })
+      .catch((error) => {
+        console.log("handleDeleteClick error", error);
+      });
+  };
 
   const handleSuccessfulFormSubmission = (portfolioItem) => {
     let updatedPortfolioItems = [portfolioItem].concat(portfolioItems);
@@ -33,9 +43,12 @@ const PortfolioManager = () => {
 
   const getPortfolioItems = () => {
     axios
-      .get("https://romanlavery.devcamp.space/portfolio/portfolio_items?order_by=created_at&direction=desc", {
-        withCredentials: true,
-      })
+      .get(
+        "https://romanlavery.devcamp.space/portfolio/portfolio_items?order_by=created_at&direction=desc",
+        {
+          withCredentials: true,
+        }
+      )
       .then((response) => {
         setPortfolioItems([...response.data.portfolio_items]);
       })
@@ -58,7 +71,11 @@ const PortfolioManager = () => {
       </div>
 
       <div className="right-column">
-        <PortfolioSidebarList data={portfolioItems} handleDeleteClick={handleDeleteClick} />
+        <PortfolioSidebarList
+          data={portfolioItems}
+          handleDeleteClick={handleDeleteClick}
+          handleEditClick={handleEditClick}
+        />
       </div>
     </div>
   );
