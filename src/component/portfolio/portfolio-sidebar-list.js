@@ -7,11 +7,12 @@ const PortfolioSidebarList = (props) => {
         <div className="portfolio-thumb-img">
           <img src={item.thumb_image_url} alt="" />
         </div>
-        <h1 className="title">{item.name}</h1>
-        <h2>{item.id}</h2>
-        <button onClick={() => props.handleDeleteClick(item)}>
-          <FontAwesomeIcon icon="fa-solid fa-trash" />
-        </button>
+        <div className="text-content">
+          <div className="title">{item.name}</div>
+          <button className="delete-icon" onClick={() => props.handleDeleteClick(item)}>
+            <FontAwesomeIcon icon="fa-solid fa-trash" />
+          </button>
+        </div>
       </div>
     );
   });
