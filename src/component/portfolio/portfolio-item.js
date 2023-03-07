@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const PortfolioItem = ({ id, description, thumb_image_url, logo_url }) => {
-    //const { id, description, thumb_image_url, logo_url } = props.item;
+const PortfolioItem = (props) => {
+    const { description, thumb_image_url, logo_url } = props.item;
     const [portfolioItemClass, setPortfolioItemClass] = useState('');
 
     const handleMouseEnter = () => {
@@ -20,7 +20,7 @@ const PortfolioItem = ({ id, description, thumb_image_url, logo_url }) => {
             <div
                 className={"portfolio-img-background " + portfolioItemClass}
                 style={{
-                    backgroundImage: `url(${thumb_image_url})` || null
+                    backgroundImage: `url(${thumb_image_url})`
                 }}     
             />
 

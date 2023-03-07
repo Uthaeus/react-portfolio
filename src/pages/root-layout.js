@@ -9,9 +9,7 @@ const RootLayout = (props) => {
                 loggedInStatus={props.loggedInStatus} 
                 handleSuccessfulLogout={props.handleSuccessfulLogout}
             />
-            <main>
-                <Outlet />
-            </main>
+            <Outlet />
         </div>
     );
 };

@@ -34,7 +34,7 @@ function App(props) {
       .get("https://api.devcamp.space/logged_in", { withCredentials: true })
       .then((response) => {
         const loggedIn = response.data.logged_in;
-        //console.log('checklogin', loggedIn, isLoggedIn);
+        console.log('checklogin', loggedIn, isLoggedIn);
         if (loggedIn && isLoggedIn === "LOGGED_IN") {
           return loggedIn;
         } else if (loggedIn && isLoggedIn === "NOT_LOGGED_IN") {
@@ -94,6 +94,7 @@ function App(props) {
           element: (
             <Auth
               {...props}
+              isLoggedIn={isLoggedIn}
               handleSuccessfulLogin={handleSuccessfulLogin}
               handleUnsuccessfulLogin={handleUnsuccessfulLogin}
             />

@@ -25,6 +25,7 @@ const Auth = (props) => {
             />
                 
             <div className="right-column">
+                {props.isLoggedIn}
                 <Login handleSuccessfulAuth={handleSuccessfulAuth} handleUnsuccessfulAuth={handleUnsuccessfulAuth} />
             </div>
         </div>

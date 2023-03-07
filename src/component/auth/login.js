@@ -7,6 +7,7 @@ const Login = (props) => {
     const [errorText, setErrorText] = useState('');
 
     const handleSubmit = event => {
+        
         axios.post('https://api.devcamp.space/sessions',
         {
             client: {
@@ -17,6 +18,7 @@ const Login = (props) => {
         { withCredentials: true }
         ).then(response => {
             if (response.data.status === 'created') {
+                console.log('login successful');
                 props.handleSuccessfulAuth();
             } else {
                 setErrorText('Wrong email or password');
