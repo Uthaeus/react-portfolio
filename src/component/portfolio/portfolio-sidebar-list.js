@@ -1,4 +1,4 @@
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const PortfolioSidebarList = (props) => {
   const portfolioList = props.data.map((item) => {
@@ -9,7 +9,9 @@ const PortfolioSidebarList = (props) => {
         </div>
         <h1 className="title">{item.name}</h1>
         <h2>{item.id}</h2>
-        <button onClick={() => props.handleDeleteClick(item)}>Delete</button>
+        <button onClick={() => props.handleDeleteClick(item)}>
+          <FontAwesomeIcon icon="fa-solid fa-trash" />
+        </button>
       </div>
     );
   });
