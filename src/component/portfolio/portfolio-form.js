@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import axios from "axios";
 import { DropzoneComponent } from "react-dropzone-component";
 
-import '../../../node_modules/react-dropzone-component/styles/filepicker.css';
-import '../../../node_modules/dropzone/dist/min/dropzone.min.css';
+import "../../../node_modules/react-dropzone-component/styles/filepicker.css";
+import "../../../node_modules/dropzone/dist/min/dropzone.min.css";
 
 class PortfolioForm extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ class PortfolioForm extends Component {
       logo: "",
       editMode: false,
       apiUrl: "https://romanlavery.devcamp.space/portfolio/portfolio_items",
-      apiAction: 'post'
+      apiAction: "post",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -38,68 +38,68 @@ class PortfolioForm extends Component {
 
   componentDidUpdate() {
     if (Object.keys(this.props.portfolioToEdit).length > 0) {
-        const {
-            id,
-            name,
-            description,
-            category,
-            position,
-            url,
-            thumb_image_url,
-            banner_image_url,
-            logo_url
-        } = this.props.portfolioToEdit;
+      const {
+        id,
+        name,
+        description,
+        category,
+        position,
+        url,
+        thumb_image_url,
+        banner_image_url,
+        logo_url,
+      } = this.props.portfolioToEdit;
 
-        this.props.clearPortolioToEdit();
+      this.props.clearPortolioToEdit();
 
-        this.setState({
-            id: id,
-            name: name || '',
-            description: description || '',
-            category: category || 'any',
-            position: position || '',
-            url: url || '',
-            editMode: true,
-            apiUrl: `https://romanlavery.devcamp.space/portfolio/portfolio_items/${id}`,
-            apiAction: 'patch',
-            thumb_image: thumb_image_url || '',
-            banner_image: banner_image_url || '',
-            logo: logo_url || ''
-        });
+      this.setState({
+        id: id,
+        name: name || "",
+        description: description || "",
+        category: category || "any",
+        position: position || "",
+        url: url || "",
+        editMode: true,
+        apiUrl: `https://romanlavery.devcamp.space/portfolio/portfolio_items/${id}`,
+        apiAction: "patch",
+        thumb_image: thumb_image_url || "",
+        banner_image: banner_image_url || "",
+        logo: logo_url || "",
+      });
     }
   }
 
   handleThumbDrop() {
     return {
-        addedfile: file => this.setState({ thumb_image: file })
-    }
+      addedfile: (file) => this.setState({ thumb_image: file }),
+    };
   }
 
   handleBannerDrop() {
     return {
-        addedfile: file => this.setState({ banner_image: file })
-    }
+      addedfile: (file) => this.setState({ banner_image: file }),
+    };
   }
 
   handleLogoDrop() {
     return {
-        addedfile: file => this.setState({ logo: file })
-    }
+      addedfile: (file) => this.setState({ logo: file }),
+    };
   }
 
   componentConfig() {
     return {
-        iconFiletypes: ['.jpg', '.png'],
-        showFiletypeIcon: true,
-        postUrl: 'https://httpbin.org/post'
-    }
+      iconFiletypes: [".jpg", ".png"],
+      showFiletypeIcon: true,
+      postUrl: "https://httpbin.org/post",
+    };
   }
 
   djsConfig() {
     return {
-        addRemoveLinks: true,
-        maxFiles: 1
-    }
+      addRemoveLinks: true,
+      maxFiles: 1,
+    };
   }
 
   buildForm() {
@@ -110,15 +110,15 @@ class PortfolioForm extends Component {
     formData.append("portfolio_item[url]", this.state.url);
     formData.append("portfolio_item[category]", this.state.category);
     formData.append("portfolio_item[position]", this.state.position);
-    
+
     if (this.state.thumb_image) {
-        formData.append("portfolio_item[thumb_image]", this.state.thumb_image);
+      formData.append("portfolio_item[thumb_image]", this.state.thumb_image);
     }
     if (this.state.banner_image) {
-        formData.append("portfolio_item[thumb_image]", this.state.banner_image);
+      formData.append("portfolio_item[thumb_image]", this.state.banner_image);
     }
     if (this.state.logo) {
-        formData.append("portfolio_item[thumb_image]", this.state.logo);
+      formData.append("portfolio_item[thumb_image]", this.state.logo);
     }
 
     return formData;
@@ -136,32 +136,32 @@ class PortfolioForm extends Component {
         method: this.state.apiAction,
         url: this.state.apiUrl,
         data: this.buildForm(),
-        withCredentials: true
+        withCredentials: true,
       })
       .then((response) => {
         if (this.state.editMode) {
-            this.props.handleEditFormSubmission();
+          this.props.handleEditFormSubmission();
         } else {
-            this.props.handleNewFormSubmission(response.data.portfolio_item);
+          this.props.handleNewFormSubmission(response.data.portfolio_item);
         }
 
         this.setState({
-            name: "",
-            description: "",
-            category: "any",
-            position: "",
-            url: "",
-            thumb_image: "",
-            banner_image: "",
-            logo: "",
-            editMode: false,
-            apiUrl: "https://romanlavery.devcamp.space/portfolio/portfolio_items",
-            apiAction: 'post'
+          name: "",
+          description: "",
+          category: "any",
+          position: "",
+          url: "",
+          thumb_image: "",
+          banner_image: "",
+          logo: "",
+          editMode: false,
+          apiUrl: "https://romanlavery.devcamp.space/portfolio/portfolio_items",
+          apiAction: "post",
         });
 
-        [this.thumbRef, this.bannerRef, this.logoRef].forEach(ref => {
-            ref.current.dropzone.removeAllFiles();
-        })
+        [this.thumbRef, this.bannerRef, this.logoRef].forEach((ref) => {
+          ref.current.dropzone.removeAllFiles();
+        });
       })
       .catch((error) => {
         console.log("portfolio form handleSubmit", error);
@@ -203,7 +203,7 @@ class PortfolioForm extends Component {
             name="category"
             value={this.state.category}
             onChange={this.handleChange}
-            className='select-element'
+            className="select-element"
           >
             <option value="any">Category</option>
             <option value="any">Any/All</option>
@@ -223,38 +223,56 @@ class PortfolioForm extends Component {
         </div>
 
         <div className="image-uploaders">
-            {this.state.thumg_image && this.state.editMode ?
-                <img src={this.state.thumb_image} alt='' /> :
+          {this.state.thumb_image && this.state.editMode ? (
+            <div className="portfolio-manager-image-wrapper">
+              <img src={this.state.thumb_image} alt="" />
+            </div>
+          ) : (
+            <DropzoneComponent
+              config={this.componentConfig()}
+              djsConfig={this.djsConfig()}
+              eventHandlers={this.handleThumbDrop()}
+              ref={this.thumbRef}
+            >
+              <div className="dz-message">Thumbnail</div>
+            </DropzoneComponent>
+          )}
 
-                <DropzoneComponent 
-                    config={this.componentConfig()}
-                    djsConfig={this.djsConfig()}
-                    eventHandlers={this.handleThumbDrop()}
-                    ref={this.thumbRef}
-                >
-                    <div className="dz-message">Thumbnail</div>
-                </DropzoneComponent>
-            }
-            <DropzoneComponent 
-                config={this.componentConfig()}
-                djsConfig={this.djsConfig()}
-                eventHandlers={this.handleBannerDrop()}
-                ref={this.bannerRef}
+          {this.state.banner_image && this.state.editMode ? (
+            <div className="portfolio-manager-image-wrapper">
+              <img src={this.state.banner_image} alt="" />
+            </div>
+          ) : (
+            <DropzoneComponent
+              config={this.componentConfig()}
+              djsConfig={this.djsConfig()}
+              eventHandlers={this.handleBannerDrop()}
+              ref={this.bannerRef}
             >
-                <div className="dz-message">Banner</div>
+              <div className="dz-message">Banner</div>
             </DropzoneComponent>
-            <DropzoneComponent 
-                config={this.componentConfig()}
-                djsConfig={this.djsConfig()}
-                eventHandlers={this.handleLogoDrop()}
-                ref={this.logoRef}
+          )}
+
+          {this.state.logo && this.state.editMode ? (
+            <div className="portfolio-manager-image-wrapper">
+              <img src={this.state.logo} alt="" />
+            </div>
+          ) : (
+            <DropzoneComponent
+              config={this.componentConfig()}
+              djsConfig={this.djsConfig()}
+              eventHandlers={this.handleLogoDrop()}
+              ref={this.logoRef}
             >
-                <div className="dz-message">Logo</div>
+              <div className="dz-message">Logo</div>
             </DropzoneComponent>
+          )}
         </div>
 
         <div>
-          <button className="btn" type="submit">Save</button>
+          <button className="btn" type="submit">
+            Save
+          </button>
         </div>
       </form>
     );
