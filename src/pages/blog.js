@@ -16,15 +16,18 @@ class BlogPage extends Component {
   }
 
   getBlogItems() {
-    axios.get("https://romanlavery.devcamp.space/portfolio/portfolio_blogs", {
-      withCredentials: true,
-    }).then(response => {
+    axios
+      .get("https://romanlavery.devcamp.space/portfolio/portfolio_blogs", {
+        withCredentials: true,
+      })
+      .then((response) => {
         this.setState({
-            blogItems: response.data.portfolio_blogs
+          blogItems: response.data.portfolio_blogs,
         });
-    }).catch(error => {
-        console.log('getBlogItems error', error);
-    })
+      })
+      .catch((error) => {
+        console.log("getBlogItems error", error);
+      });
   }
 
   componentWillMount() {
@@ -32,13 +35,13 @@ class BlogPage extends Component {
   }
 
   render() {
-    const blogRecords = this.state.blogItems.map(item => {
-        return <BlogItem key={item.id} blogItem={item} />;
+    const blogRecords = this.state.blogItems.map((item) => {
+      return <BlogItem key={item.id} blogItem={item} />;
     });
 
     return (
-      <div>
-        {blogRecords}
+      <div className="blog-container">
+        <div className="content-container">{blogRecords}</div>
       </div>
     );
   }
