@@ -1,11 +1,16 @@
-import { useState } from "react";
 import ReactModal from "react-modal";
 
-const BlogModal = props => {
-    return (
-        <ReactModal isOpen={props.modalIsOpen}>{props.children}</ReactModal>
-    );
+const BlogModal = (props) => {
+  return (
+    <ReactModal
+      onRequestClose={() => {
+        props.handleModalClose();
+      }}
+      isOpen={props.modalIsOpen}
+    >
+      <h1>in modal</h1>
+    </ReactModal>
+  );
 };
-
 
 export default BlogModal;
