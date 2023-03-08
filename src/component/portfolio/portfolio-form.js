@@ -38,7 +38,19 @@ class PortfolioForm extends Component {
   }
 
   deleteImage(imageType) {
-
+    axios
+      .delete(
+        `https://api.devcamp.space/portfolio/delete-portfolio-image/${this.state.id}?image_type=${imageType}`,
+        { withCredentials: true }
+      )
+      .then((response) => {
+        this.setState({
+          [`${imageType}_url`]: "",
+        });
+      })
+      .catch((error) => {
+        console.log("deleteImage error", error);
+      });
   }
 
   componentDidUpdate() {
@@ -233,7 +245,9 @@ class PortfolioForm extends Component {
               <img src={this.state.thumb_image_url} alt="" />
 
               <div className="image-removal-link">
-                <button onClick={() => this.deleteImage('thumb_image')}>Remove File</button>
+                <button onClick={() => this.deleteImage("thumb_image")}>
+                  Remove File
+                </button>
               </div>
             </div>
           ) : (
@@ -252,7 +266,9 @@ class PortfolioForm extends Component {
               <img src={this.state.banner_image_url} alt="" />
 
               <div className="image-removal-link">
-                <button onClick={() => this.deleteImage('banner_image')}>Remove File</button>
+                <button onClick={() => this.deleteImage("banner_image")}>
+                  Remove File
+                </button>
               </div>
             </div>
           ) : (
@@ -271,7 +287,9 @@ class PortfolioForm extends Component {
               <img src={this.state.logo_url} alt="" />
 
               <div className="image-removal-link">
-                <button onClick={() => this.deleteImage('logo')}>Remove File</button>
+                <button onClick={() => this.deleteImage("logo")}>
+                  Remove File
+                </button>
               </div>
             </div>
           ) : (
