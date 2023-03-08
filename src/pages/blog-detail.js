@@ -9,7 +9,7 @@ const BlogDetail = (props) => {
     axios.get(
       `https://romanlavery.devcamp.space/portfolio/portfolio_blogs/${currentId}`
     ).then(response => {
-
+        setBlogItem(response.data.portfolio_blog);
     }).catch(error => {
         console.log('getBlogItem error', error);
     })
@@ -19,7 +19,20 @@ const BlogDetail = (props) => {
     getBlogItem();
   }, []);
 
-  return <h1>Detail</h1>;
+  const {
+    title,
+    content,
+    featured_image_url,
+    blog_status
+  } = blogItem;
+
+  return (
+    <div>
+        <h1>{title}</h1>
+        <img src={featured_image_url} alt='' />
+        <p>{content}</p>
+    </div>
+  );
 };
 
 export default BlogDetail;
