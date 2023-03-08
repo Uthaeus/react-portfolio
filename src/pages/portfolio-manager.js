@@ -35,10 +35,14 @@ const PortfolioManager = () => {
       });
   };
 
-  const handleSuccessfulFormSubmission = (portfolioItem) => {
+  const handleNewFormSubmission = (portfolioItem) => {
     let updatedPortfolioItems = [portfolioItem].concat(portfolioItems);
 
     setPortfolioItems(updatedPortfolioItems);
+  };
+
+  const handleEditFormSubmission = () => {
+    getPortfolioItems();
   };
 
   const handleFormSubmissionError = (error) => {
@@ -69,7 +73,8 @@ const PortfolioManager = () => {
     <div className="portfolio-manager-wrapper">
       <div className="left-column">
         <PortfolioForm
-          handleSuccessfulFormSubmission={handleSuccessfulFormSubmission}
+          handleNewFormSubmission={handleNewFormSubmission}
+          handleEditFormSubmission={handleEditFormSubmission}
           handleFormSubmissionError={handleFormSubmissionError}
           clearPortfolioToEdit={clearPortfolioToEdit}
           portfolioToEdit={portfolioToEdit}
