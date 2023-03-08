@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
+import BlogItem from "../component/blog/blog-item";
+
 class BlogPage extends Component {
   constructor() {
     super();
@@ -30,13 +32,13 @@ class BlogPage extends Component {
   }
 
   render() {
+    const blogRecords = this.state.blogItems.map(item => {
+        return <BlogItem key={item.id} blogItem={item} />;
+    });
+
     return (
       <div>
-        <h1>Blog Page</h1>
-
-        <div>
-          <Link to="/about-me">Read more about me</Link>
-        </div>
+        {blogRecords}
       </div>
     );
   }
