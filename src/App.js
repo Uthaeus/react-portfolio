@@ -91,7 +91,7 @@ function App(props) {
         },
         {
           path: "/portfolio-manager",
-          element: isLoggedIn ? <PortfolioManager /> : null,
+          element: isLoggedIn ? <PortfolioManager /> : <NoMatch />,
         },
         {
           path: "/auth",
