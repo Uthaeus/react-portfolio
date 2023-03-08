@@ -20,6 +20,10 @@ const BlogModal = (props) => {
         }
     }
 
+    const handleSuccessfulFormSubmission = blog => {
+
+    }
+
   return (
     <ReactModal
         style={customStyles}
@@ -28,7 +32,7 @@ const BlogModal = (props) => {
       }}
       isOpen={props.modalIsOpen}
     >
-      <BlogForm />
+      <BlogForm handleSuccessfulFormSubmission={handleSuccessfulFormSubmission} />
     </ReactModal>
   );
 };
