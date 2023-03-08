@@ -17,19 +17,20 @@ class BlogPage extends Component {
     };
 
     this.getBlogItems = this.getBlogItems.bind(this);
-    this.activateInfiniteScroll();
+    this.onScroll = this.onScroll.bind(this);
+    window.addEventListener('scroll', this.onScroll, false);
   }
 
-  activateInfiniteScroll() {
+  onScroll() {
     if (this.state.isLoading || this.state.blogItems.length === this.state.totalCount) {
         return;
     }
 
-    window.onscroll = () => {
-        if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
-            this.getBlogItems();
-        }
+    
+    if (window.innerHeight + document.documentElement.scrollTop === document.documentElement.offsetHeight) {
+        this.getBlogItems();
     }
+    
   }
 
   getBlogItems() {
@@ -53,8 +54,12 @@ class BlogPage extends Component {
       });
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.getBlogItems();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll, false);
   }
 
   render() {
