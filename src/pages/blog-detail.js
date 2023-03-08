@@ -6,31 +6,35 @@ const BlogDetail = (props) => {
   const [blogItem, setBlogItem] = useState({});
 
   const getBlogItem = () => {
-    axios.get(
-      `https://romanlavery.devcamp.space/portfolio/portfolio_blogs/${currentId}`
-    ).then(response => {
+    axios
+      .get(
+        `https://romanlavery.devcamp.space/portfolio/portfolio_blogs/${currentId}`
+      )
+      .then((response) => {
         setBlogItem(response.data.portfolio_blog);
-    }).catch(error => {
-        console.log('getBlogItem error', error);
-    })
+      })
+      .catch((error) => {
+        console.log("getBlogItem error", error);
+      });
   };
 
   useEffect(() => {
     getBlogItem();
   }, []);
 
-  const {
-    title,
-    content,
-    featured_image_url,
-    blog_status
-  } = blogItem;
+  const { title, content, featured_image_url, blog_status } = blogItem;
 
   return (
-    <div>
+    <div className="blog-container">
+      <div className="content-container">
         <h1>{title}</h1>
-        <img src={featured_image_url} alt='' />
-        <p>{content}</p>
+
+        <div className="featured-image-wrapper">
+            <img src={featured_image_url} alt="" />
+        </div>
+
+        <div className="content">{content}</div>
+      </div>
     </div>
   );
 };
