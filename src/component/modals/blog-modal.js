@@ -3,7 +3,7 @@ import ReactModal from "react-modal";
 
 const BlogModal = props => {
     return (
-        <ReactModal isOpen={true}>{props.children}</ReactModal>
+        <ReactModal isOpen={props.modalIsOpen}>{props.children}</ReactModal>
     );
 };
 
