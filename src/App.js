@@ -6,6 +6,7 @@ import { faTrash, faSignOutAlt, faEdit } from "@fortawesome/free-solid-svg-icons
 
 import AboutPage from "./pages/about";
 import BlogPage from "./pages/blog";
+import BlogDetail from './pages/blog-detail';
 import ContactPage from "./pages/contact";
 import HomePage from "./pages/home";
 import PortfolioDetail from "./component/portfolio/portfolio-detail";
@@ -84,6 +85,10 @@ function App(props) {
         {
           path: "blog",
           element: <BlogPage />,
+        },
+        {
+          path: '/b/:slug',
+          element: <BlogDetail />
         },
         {
           path: "/portfolio/:slug",
