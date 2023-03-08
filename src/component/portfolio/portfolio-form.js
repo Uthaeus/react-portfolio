@@ -61,7 +61,10 @@ class PortfolioForm extends Component {
             url: url || '',
             editMode: true,
             apiUrl: `https://romanlavery.devcamp.space/portfolio/portfolio_items/${id}`,
-            apiAction: 'patch'
+            apiAction: 'patch',
+            thumb_image: thumb_image_url || '',
+            banner_image: banner_image_url || '',
+            logo: logo_url || ''
         });
     }
   }
@@ -220,14 +223,18 @@ class PortfolioForm extends Component {
         </div>
 
         <div className="image-uploaders">
-            <DropzoneComponent 
-                config={this.componentConfig()}
-                djsConfig={this.djsConfig()}
-                eventHandlers={this.handleThumbDrop()}
-                ref={this.thumbRef}
-            >
-                <div className="dz-message">Thumbnail</div>
-            </DropzoneComponent>
+            {this.state.thumg_image && this.state.editMode ?
+                <img src={this.state.thumb_image} alt='' /> :
+
+                <DropzoneComponent 
+                    config={this.componentConfig()}
+                    djsConfig={this.djsConfig()}
+                    eventHandlers={this.handleThumbDrop()}
+                    ref={this.thumbRef}
+                >
+                    <div className="dz-message">Thumbnail</div>
+                </DropzoneComponent>
+            }
             <DropzoneComponent 
                 config={this.componentConfig()}
                 djsConfig={this.djsConfig()}
