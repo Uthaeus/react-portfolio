@@ -1,5 +1,9 @@
 import ReactModal from "react-modal";
 
+import BlogForm from "../blog/blog-form";
+
+ReactModal.setAppElement('#root');
+
 const BlogModal = (props) => {
 
     const customStyles = {
@@ -24,7 +28,7 @@ const BlogModal = (props) => {
       }}
       isOpen={props.modalIsOpen}
     >
-      <h1>in modal</h1>
+      <BlogForm />
     </ReactModal>
   );
 };
