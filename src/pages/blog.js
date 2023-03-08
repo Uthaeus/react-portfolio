@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import BlogModal from "../component/modals/blog-modal";
 import BlogItem from "../component/blog/blog-item";
 
 class BlogPage extends Component {
@@ -69,7 +70,7 @@ class BlogPage extends Component {
 
     return (
       <div className="blog-container">
-        
+        <BlogModal />
         <div className="content-container">{blogRecords}</div>
 
         {this.state.isLoading && (
