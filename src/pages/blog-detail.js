@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import parse from 'html-react-parser';
 
 const BlogDetail = (props) => {
   const currentId = useParams();
@@ -34,7 +35,7 @@ const BlogDetail = (props) => {
             <img src={featured_image_url} alt="" />
         </div>
 
-        <div className="content">{content}</div>
+        <div className="content">{parse(content)}</div>
       </div>
     </div>
   );
