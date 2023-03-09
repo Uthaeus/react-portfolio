@@ -106,12 +106,13 @@ class BlogPage extends Component {
           handleModalClose={this.handleModalClose}
           handleSuccessfulNewBlogSubmission={this.handleSuccessfulNewBlogSubmission}
         />
-
-        <div className="new-blog-link">
-          <button onClick={this.handleNewBlogClick}>
-            <FontAwesomeIcon icon='plus-circle' />
-          </button>
-        </div>
+        {this.props.loggedInStatus && (
+            <div className="new-blog-link">
+            <button onClick={this.handleNewBlogClick}>
+                <FontAwesomeIcon icon='plus-circle' />
+            </button>
+            </div>
+        )}
 
         <div className="content-container">{blogRecords}</div>
 

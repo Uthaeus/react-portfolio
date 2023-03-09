@@ -1,9 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import axios from "axios";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faTrash, faSignOutAlt, faEdit, faSpinner, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 
+import Icons from "./helpers/icons";
 import AboutPage from "./pages/about";
 import BlogPage from "./pages/blog";
 import BlogDetail from './pages/blog-detail';
@@ -15,12 +14,13 @@ import NoMatch from "./pages/no-match";
 import Auth from "./pages/auth";
 import PortfolioManager from "./pages/portfolio-manager";
 
-library.add(faTrash, faSignOutAlt, faEdit, faSpinner, faPlusCircle);
+
 
 // https://romanlavery.devcamp.space/portfolio/portfolio_items
 
 function App(props) {
   const [isLoggedIn, setIsLoggedIn] = useState("NOT_LOGGED_IN");
+  Icons();
 
   const handleSuccessfulLogin = () => {
     setIsLoggedIn("LOGGED_IN");
@@ -84,7 +84,7 @@ function App(props) {
         },
         {
           path: "blog",
-          element: <BlogPage />,
+          element: <BlogPage loggedInStatus={isLoggedIn} />,
         },
         {
           path: '/b/:slug',
