@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const BlogDetail = (props) => {
-  const [currentId, setCurrentId] = useState(props.match.params.slug);
+  const currentId = useParams();
   const [blogItem, setBlogItem] = useState({});
 
   const getBlogItem = () => {
     axios
       .get(
-        `https://romanlavery.devcamp.space/portfolio/portfolio_blogs/${currentId}`
+        `https://romanlavery.devcamp.space/portfolio/portfolio_blogs/${currentId.slug}`
       )
       .then((response) => {
         setBlogItem(response.data.portfolio_blog);

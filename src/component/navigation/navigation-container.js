@@ -16,7 +16,7 @@ const NavigationComponent = (props) => {
         return response.data;
       })
       .catch((error) => {
-        console.log("error signing out", error);
+        console.log(" handleSignOut error", error);
       });
   };
 

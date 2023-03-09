@@ -156,6 +156,7 @@ class PortfolioForm extends Component {
         withCredentials: true,
       })
       .then((response) => {
+        console.log("handleSubmit portfolio form", response)
         if (this.state.editMode) {
           this.props.handleEditFormSubmission();
         } else {

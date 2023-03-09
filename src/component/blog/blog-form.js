@@ -35,6 +35,7 @@ class BlogForm extends Component {
             title: '',
             blog_status: ''
         });
+        return response;
     }).catch(error => {
         console.log('blog form handleSubmit error', error);
     });
@@ -55,17 +56,17 @@ class BlogForm extends Component {
             <input
             type="text"
             onChange={this.handleChange}
-            name="blog_status"
-            placeholder="Blog status"
-            value={this.state.blog_status}
+            name="title"
+            placeholder="Blog title"
+            value={this.state.title}
             />
 
             <input
             type="text"
             onChange={this.handleChange}
-            name="title"
-            placeholder="Blog title"
-            value={this.state.title}
+            name="blog_status"
+            placeholder="Blog status"
+            value={this.state.blog_status}
             />
         </div>
 

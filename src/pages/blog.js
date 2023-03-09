@@ -7,8 +7,8 @@ import BlogModal from "../component/modals/blog-modal";
 import BlogItem from "../component/blog/blog-item";
 
 class BlogPage extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       blogItems: [],
@@ -106,7 +106,7 @@ class BlogPage extends Component {
           handleModalClose={this.handleModalClose}
           handleSuccessfulNewBlogSubmission={this.handleSuccessfulNewBlogSubmission}
         />
-        {this.props.loggedInStatus && (
+        {this.props.loggedInStatus === 'LOGGED_IN' && (
             <div className="new-blog-link">
             <button onClick={this.handleNewBlogClick}>
                 <FontAwesomeIcon icon='plus-circle' />

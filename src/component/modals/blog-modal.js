@@ -21,7 +21,7 @@ const BlogModal = (props) => {
     }
 
     const handleSuccessfulFormSubmission = blog => {
-        this.props.handleSuccessfulNewBlogSubmission(blog);
+        props.handleSuccessfulNewBlogSubmission(blog);
     }
 
   return (

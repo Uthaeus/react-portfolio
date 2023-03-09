@@ -24,6 +24,7 @@ const PortfolioManager = () => {
         { withCredentials: true }
       )
       .then((response) => {
+        console.log('handleDeleteClick');
         let updatedItems = portfolioItems.filter((item) => {
           return item.id !== portfolioItem.id;
         });
@@ -61,7 +62,7 @@ const PortfolioManager = () => {
         setPortfolioItems([...response.data.portfolio_items]);
       })
       .catch((error) => {
-        console.log("portfoliomanager getPortfolioItems", error);
+        console.log("portfoliomanager getPortfolioItems error", error);
       });
   };
 

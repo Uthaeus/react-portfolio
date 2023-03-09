@@ -39,7 +39,6 @@ function App(props) {
       .get("https://api.devcamp.space/logged_in", { withCredentials: true })
       .then((response) => {
         const loggedIn = response.data.logged_in;
-        console.log('checklogin', loggedIn, isLoggedIn);
         if (loggedIn && isLoggedIn === "LOGGED_IN") {
           return loggedIn;
         } else if (loggedIn && isLoggedIn === "NOT_LOGGED_IN") {
@@ -49,13 +48,13 @@ function App(props) {
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.log('checkloginstatus error', error);
       });
   }, [isLoggedIn]);
 
   useEffect(() => {
     checkLoginStatus();
-  }, [checkLoginStatus]);
+  }, []);
 
   //element: isLoggedIn ? <DashboardLayout /> : <Navigate to="/login" />
 

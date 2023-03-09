@@ -17,14 +17,15 @@ const Login = (props) => {
         },
         { withCredentials: true }
         ).then(response => {
+            console.log('handleSubmit login', response);
             if (response.data.status === 'created') {
-                console.log('login successful');
                 props.handleSuccessfulAuth();
             } else {
                 setErrorText('Wrong email or password');
                 props.handleUnsuccessfulAuth();
             }
         }).catch(error => {
+            console.log('handleSubmit login error', error);
             setErrorText('An error occurred');
             props.handleUnsuccessfulAuth();
         })
