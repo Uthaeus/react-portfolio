@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import axios from "axios";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faTrash, faSignOutAlt, faEdit, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faSignOutAlt, faEdit, faSpinner, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 
 import AboutPage from "./pages/about";
 import BlogPage from "./pages/blog";
@@ -15,7 +15,7 @@ import NoMatch from "./pages/no-match";
 import Auth from "./pages/auth";
 import PortfolioManager from "./pages/portfolio-manager";
 
-library.add(faTrash, faSignOutAlt, faEdit, faSpinner);
+library.add(faTrash, faSignOutAlt, faEdit, faSpinner, faPlusCircle);
 
 // https://romanlavery.devcamp.space/portfolio/portfolio_items
 

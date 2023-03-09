@@ -108,7 +108,9 @@ class BlogPage extends Component {
         />
 
         <div className="new-blog-link">
-          <button onClick={this.handleNewBlogClick}>Open Modal</button>
+          <button onClick={this.handleNewBlogClick}>
+            <FontAwesomeIcon icon='plus-circle' />
+          </button>
         </div>
 
         <div className="content-container">{blogRecords}</div>
