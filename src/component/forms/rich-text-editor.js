@@ -14,6 +14,10 @@ const RichTextEditor = (props) => {
     );
   }
 
+  const uploadFile = file => {
+    
+  }
+
   return (
     <div>
       <Editor
@@ -21,6 +25,19 @@ const RichTextEditor = (props) => {
         wrapperClassName="demo-wrapper"
         editorClassName="demo-editor"
         onEditorStateChange={onEditorStateChange}
+        toolbar={{
+          inline: { inDropdown: true },
+          list: { inDropdown: true },
+          textAlign: { inDropdown: true},
+          link: { inDropdown: true },
+          history: { inDropdown: true },
+          image: {
+            uploadCallback: uploadFile,
+            alt: { present: true, mandatory: false },
+            previewImage: true,
+            inputAccept: "image/gif,image/jpeg,image/jpg,image/png,image/svg"
+          }
+        }}
       />
     </div>
   );
