@@ -5,10 +5,10 @@ import { TruncateLines } from "react-truncate-lines";
 const BlogItem = props => {
     const {
         id, 
-        blog_status,
+        //blog_status,
         content,
         title,
-        featured_image_url
+        //featured_image_url
     } = props.blogItem;
 
     return (
