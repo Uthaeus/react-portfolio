@@ -13,7 +13,7 @@ const ContactPage = () => {
 
             <div className="right-column">
                 <div className='contact-bullet-points'>
-                    <div className='bullet-pont-group'>
+                    <div className='bullet-point-group'>
                         <div className='icon'>
                             <FontAwesomeIcon icon='phone' />
                         </div>
@@ -22,7 +22,7 @@ const ContactPage = () => {
                         </div>
                     </div>
 
-                    <div className='bullet-pont-group'>
+                    <div className='bullet-point-group'>
                         <div className='icon'>
                             <FontAwesomeIcon icon='envelope' />
                         </div>
@@ -31,7 +31,7 @@ const ContactPage = () => {
                         </div>
                     </div>
 
-                    <div className='bullet-pont-group'>
+                    <div className='bullet-point-group'>
                         <div className='icon'>
                             <FontAwesomeIcon icon='map-marked-alt' />
                         </div>

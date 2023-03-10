@@ -66,7 +66,7 @@ const BlogDetail = (props) => {
 
           <BlogFeaturedImage img={featured_image_url} />
 
-          <div className="content">{parse(content)}</div>
+          <div className="content">{content}</div>
         </div>
       );
     }

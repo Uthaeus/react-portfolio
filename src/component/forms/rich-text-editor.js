@@ -30,7 +30,9 @@ const RichTextEditor = (props) => {
 
     reader.readAsDataURL(file);
     reader.onload = () => callback(reader.result);
-    reader.onerror = error => {}
+    reader.onerror = error => {
+      console.log('readAsDataURL error', error);
+    }
   }
 
   const uploadFile = file => {
