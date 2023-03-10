@@ -87,7 +87,7 @@ function App(props) {
         },
         {
           path: '/b/:slug',
-          element: <BlogDetail />
+          element: <BlogDetail loggedInStatus={isLoggedIn} />
         },
         {
           path: "/portfolio/:slug",

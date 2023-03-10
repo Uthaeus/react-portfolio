@@ -24,7 +24,9 @@ const BlogDetail = (props) => {
   };
 
   const handleEditClick = () => {
-    setEditMode(true);
+    if (props.loggedInStatus === 'LOGGED_IN') {
+      setEditMode(true);
+    }
   };
 
   const getBlogItem = () => {
