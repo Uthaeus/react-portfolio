@@ -14,8 +14,18 @@ const RichTextEditor = (props) => {
     );
   }
 
+  const getBase64= (file, callback) => {
+    let reader = new FileReader();
+
+    reader.readAsDataURL(file);
+    reader.onload = () => callback(reader.result);
+    reader.onerror = error => {}
+  }
+
   const uploadFile = file => {
-    
+    return new Promise((resolve, reject) => {
+      getBase64(file, data => resolve({ data: { link: data }}))
+    })
   }
 
   return (
