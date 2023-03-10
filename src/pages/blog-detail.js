@@ -2,11 +2,18 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import parse from "html-react-parser";
+
 import BlogFeaturedImage from "../component/blog/blog-featured-image";
+import BlogForm from "../component/blog/blog-form";
 
 const BlogDetail = (props) => {
   const currentId = useParams();
   const [blogItem, setBlogItem] = useState({});
+  const [editMode, setEditMode] = useState(false);
+
+  const handleEditClick = () => {
+    setEditMode(true);
+  };
 
   const getBlogItem = () => {
     axios
@@ -26,19 +33,25 @@ const BlogDetail = (props) => {
   }, []);
 
   const { title, content, featured_image_url, blog_status } = blogItem;
+  
+  const contentManager = () => {
+    if (editMode) {
+      return <BlogForm />;
+    } else {
+      return (
+        <div className="content-container">
+          <h1 onClick={handleEditClick}>{title}</h1>
+          <h4>{blog_status}</h4>
 
-  return (
-    <div className="blog-container">
-      <div className="content-container">
-        <h1>{title}</h1>
-        <h4>{blog_status}</h4>
+          <BlogFeaturedImage img={featured_image_url} />
 
-        <BlogFeaturedImage img={featured_image_url} />
+          <div className="content">{parse(content)}</div>
+        </div>
+      );
+    }
+  };
 
-        <div className="content">{parse(content)}</div>
-      </div>
-    </div>
-  );
+  return <div className="blog-container">{contentManager()}</div>;
 };
 
 export default BlogDetail;
