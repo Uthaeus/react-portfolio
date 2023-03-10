@@ -11,6 +11,13 @@ const BlogDetail = (props) => {
   const [blogItem, setBlogItem] = useState({});
   const [editMode, setEditMode] = useState(false);
 
+  const handleFeaturedImageDelete = () => {
+    setBlogItem((prevState) => ({
+      ...prevState,
+      featured_image_url: "",
+    }));
+  };
+
   const handleEditClick = () => {
     setEditMode(true);
   };
@@ -36,7 +43,13 @@ const BlogDetail = (props) => {
 
   const contentManager = () => {
     if (editMode) {
-      return <BlogForm editMode={editMode} blog={blogItem} />;
+      return (
+        <BlogForm
+          handleFeaturedImageDelete={handleFeaturedImageDelete}
+          editMode={editMode}
+          blog={blogItem}
+        />
+      );
     } else {
       return (
         <div className="content-container">
