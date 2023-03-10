@@ -11,6 +11,11 @@ const BlogDetail = (props) => {
   const [blogItem, setBlogItem] = useState({});
   const [editMode, setEditMode] = useState(false);
 
+  const handleUpdateFormSubmission = blog => {
+    setBlogItem(blog);
+    setEditMode(false);
+  }
+
   const handleFeaturedImageDelete = () => {
     setBlogItem((prevState) => ({
       ...prevState,
@@ -46,6 +51,7 @@ const BlogDetail = (props) => {
       return (
         <BlogForm
           handleFeaturedImageDelete={handleFeaturedImageDelete}
+          handleUpdateFormSubmission={handleUpdateFormSubmission}
           editMode={editMode}
           blog={blogItem}
         />
