@@ -33,10 +33,10 @@ const BlogDetail = (props) => {
   }, []);
 
   const { title, content, featured_image_url, blog_status } = blogItem;
-  
+
   const contentManager = () => {
     if (editMode) {
-      return <BlogForm />;
+      return <BlogForm editMode={editMode} blog={blogItem} />;
     } else {
       return (
         <div className="content-container">
