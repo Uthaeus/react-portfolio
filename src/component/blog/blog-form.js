@@ -12,7 +12,7 @@ class BlogForm extends Component {
       title: "",
       blog_status: "",
       content: "",
-      featured_image: ''
+      featured_image: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -22,27 +22,29 @@ class BlogForm extends Component {
     this.componentConfig = this.componentConfig.bind(this);
     this.djsConfig = this.djsConfig.bind(this);
     this.handleFeaturedImageDrop = this.handleFeaturedImageDrop.bind(this);
+
+    this.featuredImageRef = React.createRef();
   }
 
   handleFeaturedImageDrop() {
     return {
-        addedfile: file => this.setState({ featured_image: file })
-    }
+      addedfile: (file) => this.setState({ featured_image: file }),
+    };
   }
 
   djsConfig() {
     return {
-        addRemoveLinks: true,
-        maxFiles: 1
-    }
+      addRemoveLinks: true,
+      maxFiles: 1,
+    };
   }
 
   componentConfig() {
     return {
-        iconFiletypes: ['.jpg', '.png'],
-        showFiletypeIcon: true,
-        postUrl: 'https://httpbin.org/post'
-    }
+      iconFiletypes: [".jpg", ".png"],
+      showFiletypeIcon: true,
+      postUrl: "https://httpbin.org/post",
+    };
   }
 
   handleRichTextEditorChange(content) {
@@ -56,6 +58,13 @@ class BlogForm extends Component {
     formData.append("portfolio_blog[blog_status]", this.state.blog_status);
     formData.append("portfolio_blog[content]", this.state.content);
 
+    if (this.state.featured_image) {
+      formData.append(
+        "portfolio_blog[featured_image]",
+        this.state.featured_image
+      );
+    }
+
     return formData;
   }
 
@@ -67,11 +76,16 @@ class BlogForm extends Component {
         { withCredentials: true }
       )
       .then((response) => {
+        if (this.state.featured_image) {
+            this.featuredImageRef.current.dropzone.removeAllFiles();
+        }
+
         this.setState({
-            title: "",
-            blog_status: "",
-            content: ''
-          });
+          title: "",
+          blog_status: "",
+          content: "",
+          featured_image: ''
+        });
 
         this.props.handleSuccessfulFormSubmission(response.data.portfolio_blog);
       })
@@ -110,17 +124,20 @@ class BlogForm extends Component {
         </div>
 
         <div className="one-column">
-          <RichTextEditor handleRichTextEditorChange={this.handleRichTextEditorChange} />
+          <RichTextEditor
+            handleRichTextEditorChange={this.handleRichTextEditorChange}
+          />
         </div>
 
         <div className="image-uploaders">
-            <DropzoneComponent
-                config={this.componentConfig()}
-                djsConfig={this.djsConfig()}
-                eventHandlers={this.handleFeaturedImageDrop()}
-            >
-                <div className="dz-message">Featured Image</div>
-            </DropzoneComponent>
+          <DropzoneComponent
+            config={this.componentConfig()}
+            djsConfig={this.djsConfig()}
+            eventHandlers={this.handleFeaturedImageDrop()}
+            ref={this.featuredImageRef}
+          >
+            <div className="dz-message">Featured Image</div>
+          </DropzoneComponent>
         </div>
 
         <button className="btn">Save</button>
