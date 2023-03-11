@@ -25,6 +25,26 @@ class BlogPage extends Component {
     this.handleModalClose = this.handleModalClose.bind(this);
     this.handleSuccessfulNewBlogSubmission =
       this.handleSuccessfulNewBlogSubmission.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+  }
+
+  handleDeleteClick(blog) {
+    axios
+      .delete(
+        `https://api.devcamp.space/portfolio/portfolio_blogs/${blog.id}`,
+        { withCredentials: true }
+      )
+      .then((response) => {
+        this.setState({
+          blogItems: this.state.blogItems.filter((blogItem) => {
+            return blog.id !== blogItem.id;
+          }),
+        });
+        return response;
+      })
+      .catch((error) => {
+        console.log("handleDeleteClick blog error", error);
+      });
   }
 
   handleSuccessfulNewBlogSubmission(blog) {
@@ -96,7 +116,18 @@ class BlogPage extends Component {
 
   render() {
     const blogRecords = this.state.blogItems.map((item) => {
-      return <BlogItem key={item.id} blogItem={item} />;
+      if (this.props.loggedInStatus === "LOGGED_IN") {
+        return (
+          <div key={item.id} className="admin-blog-wrapper">
+            <BlogItem blogItem={item} />
+            <button onClick={() => this.handleDeleteClick(item)}>
+              <FontAwesomeIcon icon='trash' />
+            </button>
+          </div>
+        );
+      } else {
+        return <BlogItem key={item.id} blogItem={item} />;
+      }
     });
 
     return (
@@ -104,14 +135,16 @@ class BlogPage extends Component {
         <BlogModal
           modalIsOpen={this.state.blogModalIsOpen}
           handleModalClose={this.handleModalClose}
-          handleSuccessfulNewBlogSubmission={this.handleSuccessfulNewBlogSubmission}
+          handleSuccessfulNewBlogSubmission={
+            this.handleSuccessfulNewBlogSubmission
+          }
         />
-        {this.props.loggedInStatus === 'LOGGED_IN' && (
-            <div className="new-blog-link">
+        {this.props.loggedInStatus === "LOGGED_IN" && (
+          <div className="new-blog-link">
             <button onClick={this.handleNewBlogClick}>
-                <FontAwesomeIcon icon='plus-circle' />
+              <FontAwesomeIcon icon="plus-circle" />
             </button>
-            </div>
+          </div>
         )}
 
         <div className="content-container">{blogRecords}</div>
