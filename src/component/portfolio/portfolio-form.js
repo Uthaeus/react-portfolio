@@ -12,7 +12,7 @@ class PortfolioForm extends Component {
     this.state = {
       name: "",
       description: "",
-      category: "any",
+      category: "eCommerce",
       position: "",
       url: "",
       thumb_image: "",
@@ -67,13 +67,13 @@ class PortfolioForm extends Component {
         logo_url,
       } = this.props.portfolioToEdit;
 
-      this.props.clearPortolioToEdit();
+      this.props.clearPortfolioToEdit();
 
       this.setState({
         id: id,
         name: name || "",
         description: description || "",
-        category: category || "any",
+        category: category || "eCommerce",
         position: position || "",
         url: url || "",
         editMode: true,
@@ -131,11 +131,13 @@ class PortfolioForm extends Component {
     if (this.state.thumb_image) {
       formData.append("portfolio_item[thumb_image]", this.state.thumb_image);
     }
+
     if (this.state.banner_image) {
-      formData.append("portfolio_item[thumb_image]", this.state.banner_image);
+      formData.append("portfolio_item[banner_image]", this.state.banner_image);
     }
+
     if (this.state.logo) {
-      formData.append("portfolio_item[thumb_image]", this.state.logo);
+      formData.append("portfolio_item[logo]", this.state.logo);
     }
 
     return formData;
@@ -148,15 +150,13 @@ class PortfolioForm extends Component {
   }
 
   handleSubmit(event) {
-    axios
-      .post({
-        method: this.state.apiAction,
-        url: this.state.apiUrl,
-        data: this.buildForm(),
-        withCredentials: true,
-      })
+    axios({
+      method: this.state.apiAction,
+      url: this.state.apiUrl,
+      data: this.buildForm(),
+      withCredentials: true,
+    })
       .then((response) => {
-        console.log("handleSubmit portfolio form", response)
         if (this.state.editMode) {
           this.props.handleEditFormSubmission();
         } else {
@@ -166,7 +166,7 @@ class PortfolioForm extends Component {
         this.setState({
           name: "",
           description: "",
-          category: "any",
+          category: "eCommerce",
           position: "",
           url: "",
           thumb_image: "",
@@ -182,14 +182,15 @@ class PortfolioForm extends Component {
         });
       })
       .catch((error) => {
-        console.log("portfolio form handleSubmit", error);
+        console.log("portfolio form handleSubmit error", error);
       });
+
     event.preventDefault();
   }
 
   render() {
     return (
-      <form className="portfolio-form-wrapper" onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className="portfolio-form-wrapper">
         <div className="two-column">
           <input
             type="text"
@@ -223,8 +224,6 @@ class PortfolioForm extends Component {
             onChange={this.handleChange}
             className="select-element"
           >
-            <option value="any">Category</option>
-            <option value="any">Any/All</option>
             <option value="eCommerce">eCommerce</option>
             <option value="Scheduling">Scheduling</option>
             <option value="Enterprise">Enterprise</option>
@@ -233,6 +232,7 @@ class PortfolioForm extends Component {
 
         <div className="one-column">
           <textarea
+            type="text"
             name="description"
             placeholder="Description"
             value={this.state.description}
@@ -246,17 +246,17 @@ class PortfolioForm extends Component {
               <img src={this.state.thumb_image_url} alt="" />
 
               <div className="image-removal-link">
-                <button onClick={() => this.deleteImage("thumb_image")}>
-                  Remove File
-                </button>
+                <div onClick={() => this.deleteImage("thumb_image")}>
+                  Remove file
+                </div>
               </div>
             </div>
           ) : (
             <DropzoneComponent
+              ref={this.thumbRef}
               config={this.componentConfig()}
               djsConfig={this.djsConfig()}
               eventHandlers={this.handleThumbDrop()}
-              ref={this.thumbRef}
             >
               <div className="dz-message">Thumbnail</div>
             </DropzoneComponent>
@@ -267,17 +267,17 @@ class PortfolioForm extends Component {
               <img src={this.state.banner_image_url} alt="" />
 
               <div className="image-removal-link">
-                <button onClick={() => this.deleteImage("banner_image")}>
-                  Remove File
-                </button>
+                <div onClick={() => this.deleteImage("banner_image")}>
+                  Remove file
+                </div>
               </div>
             </div>
           ) : (
             <DropzoneComponent
+              ref={this.bannerRef}
               config={this.componentConfig()}
               djsConfig={this.djsConfig()}
               eventHandlers={this.handleBannerDrop()}
-              ref={this.bannerRef}
             >
               <div className="dz-message">Banner</div>
             </DropzoneComponent>
@@ -288,17 +288,15 @@ class PortfolioForm extends Component {
               <img src={this.state.logo_url} alt="" />
 
               <div className="image-removal-link">
-                <button onClick={() => this.deleteImage("logo")}>
-                  Remove File
-                </button>
+                <div onClick={() => this.deleteImage("logo")}>Remove file</div>
               </div>
             </div>
           ) : (
             <DropzoneComponent
+              ref={this.logoRef}
               config={this.componentConfig()}
               djsConfig={this.djsConfig()}
               eventHandlers={this.handleLogoDrop()}
-              ref={this.logoRef}
             >
               <div className="dz-message">Logo</div>
             </DropzoneComponent>

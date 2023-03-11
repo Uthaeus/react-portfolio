@@ -17,14 +17,12 @@ const PortfolioManager = () => {
   };
 
   const handleDeleteClick = (portfolioItem) => {
-    console.log("handleDeleteClick", portfolioItem);
     axios
       .delete(
         `https://api.devcamp.space/portfolio/portfolio_items/${portfolioItem.id}`,
         { withCredentials: true }
       )
       .then((response) => {
-        console.log('handleDeleteClick');
         let updatedItems = portfolioItems.filter((item) => {
           return item.id !== portfolioItem.id;
         });
