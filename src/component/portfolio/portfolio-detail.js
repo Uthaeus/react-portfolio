@@ -35,28 +35,34 @@ const PortfolioDetail = (props) => {
   } = portfolioItem;
 
   const bannerStyles = {
-    backgroundImage: `url(${banner_image_url}) no-repeat`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center center'
-  }
+    backgroundImage: `url(${banner_image_url})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: 'no-repeat'
+  };
 
   const logoStyles = {
-    width: '200px'
-  }
+    width: "200px",
+  };
 
   return (
     <div className="portfolio-detail-wrapper">
-        <div className="banner" style={bannerStyles}>
-            <img src={logo_url} alt='' style={logoStyles} />
-        </div>
+      <div
+        className="banner"
+        style={bannerStyles}
+      >
+        <img src={logo_url} alt="" style={logoStyles} />
+      </div>
 
-        <div className="portfolio-detail-description-wrapper">
-            <div className="description">{description}</div>
-        </div>
+      <div className="portfolio-detail-description-wrapper">
+        <div className="description">{description}</div>
+      </div>
 
-        <div className="bottom-content-wrapper">
-            <a href={url} className='site-link' target='_blank' rel='noreferrer'>Visit {name}</a>
-        </div>
+      <div className="bottom-content-wrapper">
+        <a href={url} className="site-link" target="_blank" rel="noreferrer">
+          Visit {name}
+        </a>
+      </div>
     </div>
   );
 };
