@@ -12,14 +12,14 @@ const BlogItem = (props) => {
   } = props.blogItem;
 
   return (
-    <div>
+    <div className="blog-item-container">
       <Link to={`/b/${id}`}>
         <h1>{title}</h1>
       </Link>
 
-      <div>
+      <div className="blog-item-content">
         <TruncateLines
-          lines={3}
+          lines={2}
           ellipsis={
             <span>
               ...<Link to={`/b/${id}`}>Read more</Link>
