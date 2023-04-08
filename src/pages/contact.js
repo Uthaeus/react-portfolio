@@ -18,7 +18,7 @@ const ContactPage = () => {
                             <FontAwesomeIcon icon='phone' />
                         </div>
                         <div className='text'>
-                            555-555-5555
+                            801-560-4312
                         </div>
                     </div>
 
@@ -27,7 +27,7 @@ const ContactPage = () => {
                             <FontAwesomeIcon icon='envelope' />
                         </div>
                         <div className='text'>
-                            homer@example.com
+                            romanlavery@gmail.com 
                         </div>
                     </div>
 

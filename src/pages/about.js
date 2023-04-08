@@ -1,5 +1,5 @@
 
-import profilePicture from '../assets/images/auth/login.jpg';
+import profilePicture from '../assets/images/auth/att_park.jpg';
 
 const AboutPage = () => {
     return (
@@ -11,7 +11,7 @@ const AboutPage = () => {
             }} />
 
             <div className="right-column">
-                Bio information....
+                Hi, my name is Roman. I was born and raised in Utah, USA, mostly in the Salt Lake City area. I love sports, food, travelling, my family, and especially watching my boys compete. After a large number of years in the construction industry I began to dip my toes in technology. Software development has reignited my interest in learning and kept me busy with new subjects to dive into.
             </div>
         </div>
     );
